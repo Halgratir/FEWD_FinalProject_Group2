@@ -17,9 +17,20 @@
     text-align: center;
 }
 
+
+.motto {
+    font-family: 'Megrim', sans-serif;
+    font-size: 54px;
+    color: darkgreen;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 .h1 {
-    font-family:'Franklin Gothic Medium', sans-serif;
-    font-size: 40px;
+    font-family: 'cinzel decorative', serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 48px;
     color: darkgreen;
     text-align: center;
     margin-top: 20px;
@@ -35,10 +46,14 @@
 }
 
 .title {
-    font-family: magrim, sans-serif;
-    font-size: 36px;
+    font-family: 'cinzel decorative', serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 48px;
     color: darkgreen;
     text-align: center;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
+
 
