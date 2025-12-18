@@ -1,5 +1,5 @@
 .body{
-    font-family: crimson text;
+    font-family: black text;
     font-size: 16px;
     line-height: 1.5;
     color: #333;
@@ -8,11 +8,30 @@
     padding: 0;
 }
 
-.h1, h2 {
-    font-family: cherry bomb one, sans-serif;
-    font-size: 24px;
-    color:aquamarine
+.p {
+    font-family: 'Ariel', sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    color: black
+    margin-bottom: 20px;
+    text-align: center;
+}
 
+.h1 {
+    font-family:'Franklin Gothic Medium', sans-serif;
+    font-size: 40px;
+    color: darkgreen;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.h2{
+    font-family: 'Franklin Gothic Medium', sans-serif;
+    font-size: 32px;
+    color: darkgreen;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .title {
@@ -22,3 +41,4 @@
     text-align: center;
     margin-top: 20px;
 }
+
