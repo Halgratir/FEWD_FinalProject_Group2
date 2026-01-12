@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AquaBalance Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f0f8ff; }
+    h1 { color: #006699; }
+    label { display: block; margin-top: 10px; }
+    button { margin-top: 15px; padding: 8px 12px; background: #006699; color: white; border: none; cursor: pointer; }
+    .result { margin-top: 20px; padding: 10px; background: #e6f2ff; border: 1px solid #006699; }
+  </style>
+</head>
+<body>
+  <h1>AquaBalance AI (Demo)</h1>
+<p style="text-align: justify;">
+    Enter the demand amounts for the water supply and discover how the community and ecosystem are prioritized before industry.</p>
+<section style="background-color: rgb(101, 234, 207); padding: 15px; border-radius: 10px;">
+<p style="font-weight: bold; color: rgb(3, 48, 3); text-align: center;">“An interactive model: enter the total water supply and see the adjustment made in the community, industry, and ecosystems. The system ethically allocates resources by prioritizing protection of the community demand and ecosystem before distributing the remaining supply to the industry.”</p>
+</section>
+<br>
+<br>
+  <label>Total Supply (units): <input type="number" id="supply" value="1000"></label>
+  <label>Community Demand: <input type="number" id="community" value="400"></label>
+  <label>Industry Demand: <input type="number" id="industry" value="300"></label>
+  <label>Ecosystem Minimum: <input type="number" id="ecosystem" value="200"></label>
+
+<button onclick="allocateWater()">Allocate Water</button>
+<button onclick="resetAllocateWater()">Reset</button>
+
+<script>
+function resetAllocateWater() {
+  document.getElementById('supply').value = 1000;
+  document.getElementById('community').value = 400;
+  document.getElementById('industry').value = 300;
+  document.getElementById('ecosystem').value = 200;
+  document.getElementById('output').innerHTML = "";
+}
+</script>
+
+<canvas id="allocateWaterChart"></canvas>
+
+<div class="result" id="output"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    function allocateWater() {
+      let supply = parseInt(document.getElementById('supply').value);
+      let community = parseInt(document.getElementById('community').value);
+      let industry = parseInt(document.getElementById('industry').value);
+      let ecosystemMin = parseInt(document.getElementById('ecosystem').value);
+
+      let communityAlloc = 0, industryAlloc = 0, ecosystemAlloc = 0;
+      let message = "";
+
+      if (supply < community + ecosystemMin) {
+        message = "Shortage! Community and ecosystem prioritized. Industry receives none.";
+        communityAlloc = Math.min(supply - ecosystemMin, community);
+        ecosystemAlloc = ecosystemMin;
+        industryAlloc = 0;
+      } else {
+        communityAlloc = community;
+        ecosystemAlloc = ecosystemMin;
+        industryAlloc = Math.min(industry, supply - communityAlloc - ecosystemAlloc);
+        message = "Balanced allocation achieved.";
+      }
+
+      document.getElementById('output').innerHTML =
+        `<strong>${message}</strong><br>
+         Supply: ${supply}<br>
+         Community: ${communityAlloc}<br>
+         Industry: ${industryAlloc}<br>
+         Ecosystem: ${ecosystemAlloc}`;
+    }
+  </script>
+
+<br>
+<br>
+  <h1>AI vs Nature: Water Simulations</h1>
+<p style="text-align: justify;">
+ See the varied potential outcomes of water management solutions. 
+</p>
+<section style="background-color: rgb(101, 234, 207); padding: 15px; border-radius: 10px;">
+<p style="font-weight: bold; color: rgb(3, 48, 3); text-align: center;">“An interactive tool to show how drought severity can impact the water supply over time. Adjust the drought intensity and watch the system visualize reservoir decline and the ecological stress in a generated chart.”</p>
+</section>
+<br>
+<br>
+<br>
+  <h2>Drought Scenario</h2>
+<p style="text-align: justify;">
+ See how an increase in drought severity can impact the water supply and ecosystem health over time. Adjust the severity percentage to see how fast the ecosystem can collapse under stress.
+</p>
+<section style="background-color: rgb(101, 234, 207); padding: 15px; border-radius: 10px;">
+<p style="font-weight: bold; color: rgb(3, 48, 3); text-align: center;">“An interactive simulation that shows how increasing drought severity gradually impacts water supply and the condition of the ecosystem. Adjust the severity percentage to watch the model reveal how quickly an ecosystem can weaken or collapse under adverse conditions.”</p>
+</section>
+  <label>Drought severity (% per year): 
+    <input type="number" id="drought" value="10">
+  </label>
+
+  <button onclick="runDrought()">Run Simulation</button>
+   <button onclick="resetDrought()">Reset</button>
+
+   <script>
+function resetDrought() {
+  document.getElementById('drought').value = 0;
+  document.getElementById('droughtResult').innerHTML = "";
+
+  const ctx = document.getElementById('droughtChart').getContext('2d');
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+}
+   </script>
+
+  <canvas id="droughtChart"></canvas>
+  <div class="result" id="droughtResult"></div>
+<br>
+<h2>Over-Extraction VS. Flexibility</h2>
+<p style="text-align: justify;">
+A simulation that explores the balance between water extraction and natural regeneration. Adjust the extraction and regeneration rates to see the long-term impacts on reservoir levels.
+</p>
+<section style="background-color: rgb(101, 234, 207); padding: 15px; border-radius: 10px;">
+<p style="font-weight: bold; color: rgb(3, 48, 3); text-align: center;">“Set the extraction and regeneration rates to see how they impact the reservoir levels over time. The result is shown in a chart. The interactive simulation shows a graph to depict how fast a water system can collapse, recover, and its long‑term impact.”</p>
+</section>
+<br>
+<br>
+  <label>Extraction per cycle: 
+    <input type="number" id="extract" value="120">
+  </label>
+  <label>Regeneration per cycle: 
+    <input type="number" id="regen" value="50">
+  </label>
+
+  <button onclick="runExtraction()">Run Simulation</button>
+<button onclick="resetExtraction()">Reset</button>
+
+<script>
+function resetExtraction() {
+  document.getElementById('extract').value = 0;
+  document.getElementById('regen').value = 0;
+  document.getElementById('extractResult').innerHTML = "";
+
+  const ctx = document.getElementById('extractChart').getContext('2d');
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+}
+</script>
+
+   <canvas id="extractChart"></canvas>
+  <div class="result" id="extractResult"></div>
+
+    <script>
+    function runDrought() {
+      let severity = parseInt(document.getElementById('drought').value);
+      let supply = 1000, community = 400, industry = 300, ecosystemMin = 200;
+      let years = [], supplies = [], ecosystems = [];
+      let collapseYear = null;
+
+      for (let year=1; year<=10; year++) {
+        supply -= supply * (severity/100);
+        let ecosystemAlloc = Math.max(0, ecosystemMin - (year*10)); // AI cuts ecosystem
+        if (ecosystemAlloc < 100 && !collapseYear) collapseYear = year;
+        years.push(year);
+        supplies.push(supply);
+        ecosystems.push(ecosystemAlloc);
+      }
+
+      new Chart(document.getElementById('droughtChart'), {
+        type: 'line',
+        data: { labels: years, datasets: [
+          { label: 'Supply', data: supplies, borderColor: 'blue' },
+          { label: 'Ecosystem Allocation', data: ecosystems, borderColor: 'green' }
+        ]}
+      });
+
+      document.getElementById('droughtResult').innerHTML =
+        collapseYear ? `⚠️ Ecosystem collapsed in Year ${collapseYear}` :
+        "Ecosystem survived all years.";
+    }
+
+    function runExtraction() {
+      let extract = parseInt(document.getElementById('extract').value);
+      let regen = parseInt(document.getElementById('regen').value);
+      let reservoir = 500;
+      let cycles = [], levels = [];
+      let collapseCycle = null;
+
+      for (let cycle=1; cycle<=10; cycle++) {
+        reservoir -= extract;
+        reservoir += regen;
+        if (reservoir <= 0 && !collapseCycle) collapseCycle = cycle;
+        cycles.push(cycle);
+        levels.push(Math.max(reservoir,0));
+      }
+
+      new Chart(document.getElementById('extractChart'), {
+        type: 'line',
+        data: { labels: cycles, datasets: [
+          { label: 'Reservoir Level', data: levels, borderColor: 'brown' }
+        ]}
+      });
+
+      document.getElementById('extractResult').innerHTML =
+        collapseCycle ? `⚠️ Reservoir collapsed at cycle ${collapseCycle}` :
+        "Reservoir remained stable.";
+    }
+  </script>
+<br>
+<br>
+<br>
+<br>
+<br>
+<footer style="color: rgb(7, 69, 7)">© 2026 Rooted Intelligence | Simulator</footer>
+</body>
+</html>
