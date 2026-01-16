@@ -108,7 +108,7 @@ header.site-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 50px;
+    padding: 10px 40px;
     background: rgba(10, 10, 10, 0.95);
     border-bottom: 2px solid var(--primary-orange);
     position: sticky;
@@ -117,35 +117,46 @@ header.site-header {
     box-shadow: 0 4px 20px rgba(255, 102, 0, 0.2);
 }
 
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+}
+
 .logo-emblem {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, var(--primary-orange), var(--accent-red));
-    border-radius: 12px;
+    width: 80px;
+    height: 80px;
+    background: transparent !important;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
-    font-weight: bold;
-    font-size: 24px;
-    box-shadow: 0 0 15px rgba(255, 102, 0, 0.5);
+    overflow: visible;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+.logo-emblem img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    mix-blend-mode: screen;
+}
+
 .logo-emblem:hover {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 0 25px rgba(255, 51, 51, 0.8);
+    transform: scale(1.1);
 }
 
 .site-nav a {
     text-decoration: none;
     color: var(--text-main);
     font-weight: bold;
-    margin-left: 25px;
+    margin-left: 12px;
     position: relative;
     transition: color 0.3s ease;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.3px;
+    font-size: 12px;
+    white-space: nowrap;
 }
 
 .site-nav a:hover {
